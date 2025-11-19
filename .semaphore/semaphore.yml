@@ -26,4 +26,4 @@ promotions:
   - name: Deploy
     pipeline_file: deploy.yml
     auto_promote:
-      when: "branch = 'master'"
+      when: "true"
