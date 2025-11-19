@@ -1,0 +1,21 @@
+version: v1.0
+name: Deploy
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: Deploy
+    task:
+      secrets:
+        - name: nac-secrets
+      jobs:
+        - name: Terraform Apply
+          commands:
+            - checkout
+            # Pull artifacts from the Plan stage
+            - artifact pull workflow plan.tfplan
+            - docker pull danischm/nac:0.1.4
+            # Run terraform apply inside the container
+            - docker run --rm -v $(pwd):/app -w /app -e MERAKI_API_KEY=$MERAKI_API_KEY danischm/nac:0.1.4 /bin/sh -c "terraform init -input=false && terraform apply -input=false -auto-approve plan.tfplan"
