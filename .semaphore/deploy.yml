@@ -18,4 +18,4 @@ blocks:
             - artifact pull workflow plan.tfplan
             - docker pull danischm/nac:0.1.4
             # Run terraform apply inside the container
-            - docker run --rm -v $(pwd):/app -w /app -e MERAKI_API_KEY=$MERAKI_API_KEY danischm/nac:0.1.4 /bin/sh -c "terraform init -input=false && terraform apply -input=false -auto-approve plan.tfplan"
+            - docker run --rm -v $(pwd):/app -w /app -e MERAKI_API_KEY=$MERAKI_API_KEY -e TF_TOKEN_app_terraform_io=$TF_TOKEN_app_terraform_io danischm/nac:0.1.4 /bin/sh -c "terraform init -input=false && terraform apply -input=false -auto-approve plan.tfplan"
