@@ -2,9 +2,9 @@ meraki:
   domains:
     - name: Mearki as Code Semaphore
       organizations:
-        - name: Cisco HK SE
+        - name: Meraki-as-Code
           networks:
-            - name: minimal-test-network
+            - name: minimal-test-for-CTF
               product_types:
                 - appliance
                 - switch
