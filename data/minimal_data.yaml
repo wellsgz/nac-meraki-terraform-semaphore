@@ -11,4 +11,4 @@ meraki:
                 - wireless
               time_zone: Asia/Hong_Kong
               tags:
-                - CTF
+                - CTF_SAC
