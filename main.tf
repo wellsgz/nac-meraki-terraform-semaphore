@@ -8,7 +8,7 @@ terraform {
   }
   required_providers {
     meraki = {
-      source  = "cisco-open/meraki"
+      source  = "CiscoDevNet/meraki"
       version = ">= 1.0.0"
     }
   }
