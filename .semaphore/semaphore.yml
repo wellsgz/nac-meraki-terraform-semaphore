@@ -16,7 +16,7 @@ blocks:
             - checkout
             - docker pull danischm/nac:0.1.4
             # Run terraform plan inside the container, mounting the current directory
-            - docker run --rm -v $(pwd):/app -w /app -e MERAKI_API_KEY=$MERAKI_API_KEY danischm/nac:0.1.4 /bin/sh -c "terraform init -input=false && terraform plan -out=plan.tfplan -input=false && terraform show -no-color plan.tfplan > plan.txt && terraform show -json plan.tfplan > plan.json"
+            - docker run --rm -v $(pwd):/app -w /app -e MERAKI_API_KEY=$MERAKI_API_KEY -e TF_TOKEN_app_terraform_io=$TF_TOKEN_app_terraform_io danischm/nac:0.1.4 /bin/sh -c "terraform init -input=false && terraform plan -out=plan.tfplan -input=false && terraform show -no-color plan.tfplan > plan.txt && terraform show -json plan.tfplan > plan.json"
             # Push artifacts for the deploy stage
             - artifact push workflow plan.tfplan
             - artifact push workflow plan.txt
